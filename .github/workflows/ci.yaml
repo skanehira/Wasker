@@ -1,0 +1,27 @@
+name: ci
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    paths-ignore:
+      - '**/*.md'
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: Run clippy
+    steps:
+      - name: Setup
+        uses: ./.github/workflows/actions/setup
+      - name: Run clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
+  test:
+    runs-on: ubuntu-latest
+    name: Run test
+    steps:
+      - name: Setup
+        uses: ./.github/workflows/actions/setup
+      - name: Run test
+        run: cargo test --all -- --nocapture
