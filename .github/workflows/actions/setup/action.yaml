@@ -3,8 +3,6 @@ name: Setup
 runs:
   using: composite
   steps:
-    - name: Checkout
-      uses: actions/checkout@v3
     - name: Setup rust toolchain
       uses: dtolnay/rust-toolchain@stable
     - name: Install LLVM
